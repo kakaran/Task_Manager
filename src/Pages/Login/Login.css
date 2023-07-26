@@ -9,6 +9,9 @@
 .LoginImageConatiner {
   width: 55%;
   /* position: relative; */
+  @media (max-width: 750px) {
+    display: none;
+  }
 }
 
 .LoginImageConatiner > img {
@@ -37,7 +40,7 @@
 } */
 
 .LoginFormContainer {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 45%;
   margin: auto;
 }
@@ -47,10 +50,9 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-  width: 275px;
+  width: 300px;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .loginInputSpan {
@@ -67,8 +69,8 @@
 .loginInputSpan > input {
   color: #415a77;
   outline: none;
-  width: 225px;
-
+  width: 250px;
+  background-color: transparent;
   &::placeholder {
     color: #c2c2c2;
   }
@@ -78,15 +80,26 @@
   background-color: #0575e6;
   border-radius: 40px;
   padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  color: #fff;
   &:active {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      color: black;
   }
 }
 
-.LoginFormContainer > div:nth-child(4){
-    text-align: center;
-    margin: auto;
+@media (max-width: 750px) {
+  .LoginContainer {
+    background-image: url("../../Assets/Login/loginBackground.webp");
+    color: white;
+  }
+  .LoginFormContainer {
+    width: 350px;
+  }
+
+  .loginInputSpan > input{
+    color: #fff;
+  }
 }
