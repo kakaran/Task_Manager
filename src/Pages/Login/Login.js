@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
 import image from "../../Assets/Login/Login.webp";
 import { FaUser, FaLock } from "react-icons/fa";
 import axios from "axios";
-import { UseController } from "../../Context/Context";
+import { AllContext } from "../../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [Email, setEmail] = useState();
   const [Password, setPassword] = useState();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [,Authentication] = UseController()
+  const { setAuth } = useContext(AllContext);
+  const navigate = useNavigate();
 
   //Login Api call
   const UserLogin = async () => {
@@ -17,10 +19,13 @@ const Login = () => {
       const Data = (
         await axios.post(`${BASE_URL}/api/login`, { Email, Password })
       ).data;
-      console.log(Data);
       if (Data.token) {
         localStorage.setItem("auth", JSON.stringify(Data));
-        // Authentication()
+        // Authentication(Data.token)
+        setAuth({
+          token: Data.token,
+        });
+        navigate("/dashboard");
       }
     } catch (error) {
       console.log(error);
@@ -86,7 +91,7 @@ const Login = () => {
             <p className={`${!Password ? "hidden" : ""} text-center`}>
               {PasswordCheck()}
             </p>
-            <button onClick={ UserLogin}>Login</button>
+            <button onClick={UserLogin}>Login</button>
             <p className="text-center mt-3 text-base cursor-pointer hover:border-b hover:border-b-teal-500 hover:rounded-full  ">
               Forgot Password
             </p>
