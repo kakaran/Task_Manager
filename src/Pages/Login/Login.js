@@ -1,15 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import image from "../../Assets/Login/Login.webp";
 import { FaUser, FaLock } from "react-icons/fa";
+import axios from "axios";
+import { UseController } from "../../Context/Context";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [Email, setEmail] = useState();
+  const [Password, setPassword] = useState();
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [,Authentication] = UseController()
 
-  const Emailcheck = () => {    // Email Check Syntax is correct or not
-    if (email) {
-      if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+  //Login Api call
+  const UserLogin = async () => {
+    try {
+      const Data = (
+        await axios.post(`${BASE_URL}/api/login`, { Email, Password })
+      ).data;
+      console.log(Data);
+      if (Data.token) {
+        localStorage.setItem("auth", JSON.stringify(Data));
+        // Authentication()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const Emailcheck = () => {
+    // Email Check Syntax is correct or not
+    if (Email) {
+      if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i?.test(Email)) {
         return "Valid email address";
       } else {
         return "Invalid email address";
@@ -17,11 +38,12 @@ const Login = () => {
     }
   };
 
-  const PasswordCheck = () => {    // Password Check Syntax is correct or not
-    if (password) {
+  const PasswordCheck = () => {
+    // Password Check Syntax is correct or not
+    if (Password) {
       if (
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(
-          password
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/?.test(
+          Password
         )
       ) {
         return "Valid password";
@@ -47,10 +69,10 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="abcd@ex.com"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e?.target?.value)}
               />
             </span>
-            <p className={`${!email ? "hidden" : ""} text-center`}>
+            <p className={`${!Email ? "hidden" : ""} text-center`}>
               {Emailcheck()}
             </p>
             <span className="loginInputSpan">
@@ -58,13 +80,13 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="************"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e?.target?.value)}
               />
             </span>
-            <p className={`${!password ? "hidden" : ""} text-center`}>
+            <p className={`${!Password ? "hidden" : ""} text-center`}>
               {PasswordCheck()}
             </p>
-            <button>Login</button>
+            <button onClick={ UserLogin}>Login</button>
             <p className="text-center mt-3 text-base cursor-pointer hover:border-b hover:border-b-teal-500 hover:rounded-full  ">
               Forgot Password
             </p>
