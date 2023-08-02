@@ -1,0 +1,33 @@
+.TaskCardsContainer {
+  font-family: "Inter", sans-serif;
+}
+
+.TaskOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TaskOptions > p {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.TaskOptions > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #eee9fd;
+  color: #6f47eb;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.TaskCardDisplay {
+  display: flex;
+  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+}

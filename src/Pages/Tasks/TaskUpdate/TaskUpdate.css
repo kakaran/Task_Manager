@@ -1,0 +1,68 @@
+.TaskUpdateContainer {
+  display: flex;
+  /* border: 1px solid; */
+  height: auto;
+  justify-content: space-between;
+  gap: 20px;
+
+  .FormDisplay {
+    /* border: 1px solid; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+
+    .TaskAddDetail {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      border-bottom: 1px solid #e0e1dd;
+    }
+
+    .TaskInput {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 5px;
+
+      .TaskDetail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      .TaskDetail label {
+        font-size: medium;
+        font-weight: 500;
+        color: #3d5a80;
+        padding-left: 5px;
+      }
+
+      .TaskDetail > input,
+      select,
+      textarea {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 10px;
+        background-color: #f9f9f9;
+        color: #011627;
+        resize: none;
+      }
+    }
+  }
+
+  .StatusDisplay {
+    width: 100%;
+    border: 1px solid;
+    padding: 25px;
+  }
+
+  .StatusDisplay > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

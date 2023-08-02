@@ -1,0 +1,36 @@
+.TaskCardsContainer {
+  /* border: 1px solid black; */
+  width: auto;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  /* align-items: end; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  gap: 20px;
+
+  .TaskStatus{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .TaskDetail > p {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .TaskDetail > p > span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #5d6063;
+  }
+
+  .TaskStatus > p {
+    background-color: #ededed;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: #5c5f62;
+    text-align: center;
+  }
+}

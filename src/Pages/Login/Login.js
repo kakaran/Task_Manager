@@ -25,7 +25,7 @@ const Login = () => {
         setAuth({
           token: Data.token,
         });
-        navigate("/dashboard");
+        navigate("/home");
       }
     } catch (error) {
       console.log(error);

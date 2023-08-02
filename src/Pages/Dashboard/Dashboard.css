@@ -1,0 +1,23 @@
+.AdminDashboardContainer {
+  width: 100%;
+  display: flex;
+  /* overflow: hidden; */
+}
+
+.pageContainer {
+  margin-left: auto;
+  width: 85%;
+  padding-top:90px ;
+}
+
+
+.PageData {
+  /* overflow-y: scroll; */
+  margin-bottom: auto;
+  padding: 10px;
+  width: 95%;
+  margin: auto;
+  text-align: justify;
+  font-family: "Inter", sans-serif;
+
+}

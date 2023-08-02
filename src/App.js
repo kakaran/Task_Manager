@@ -19,6 +19,3 @@ function App() {
 
 export default App;
 
-// <Route path="/" element={<Login />} />
-
-// <Route path = "/form" element={<TaskForm/>}/>
