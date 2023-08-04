@@ -1,26 +1,31 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../Dashboard/Dashboard.css";
 import "./TaskUpdate.css";
 import "../TaskAdd/TaskAdd.css";
 import SideMenu from "../../../Components/SideMenu/SideMenu";
 import TopBar from "../../../Components/TopBar/TopBar";
 import { AllContext } from "../../../Context/Context";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TaskUpdate = () => {
-  const { allModels } = useContext(AllContext);
+  const { allModels, setRender, render, NotificationMethod } =
+    useContext(AllContext);
   const [modelColor, setModelColour] = useState([]);
-  const getDate = new Date();
   const [formDetail, setFormDetail] = useState({
     Job_No: "",
     Model: "",
     Colour: "",
     Metal_Code: "",
     Fab_ID: "",
-    Status_Allocated: "",
+    Status: "",
     Message: "",
     Price: "",
-    Date: getDate.toISOString().substring(0, 10),
+    Date: "",
   });
+  const [statusHistory, setStatusHistory] = useState();
+  const { id } = useParams("id");
 
   const ModelColorSelect = async (value) => {
     // eslint-disable-next-line array-callback-return
@@ -29,8 +34,66 @@ const TaskUpdate = () => {
     });
   };
 
+  useEffect(() => {
+    const SingleTaskDataGet = async () => {
+      try {
+        const Response = (
+          await axios.get(`${BASE_URL}/api/SingleTaskDataGet/${id}`)
+        ).data;
+
+        const lastStatus = Response.GetData.Status_Allocated.length - 1;
+
+        if (Response);
+        // eslint-disable-next-line no-lone-blocks
+        {
+          setFormDetail({
+            Job_No: Response.GetData.Job_No,
+            Model: Response.GetData.Model,
+            Colour: Response.GetData.Colour,
+            Metal_Code: Response.GetData.Metal_Code,
+            Fab_ID: Response.GetData.Fab_ID,
+            Status: Response.GetData.Status_Allocated[lastStatus].Status,
+            Message: Response.GetData.Message,
+            Price: Response.GetData.Price,
+            Date: Response.GetData.Date,
+          });
+          setStatusHistory(Response.GetData.Status_Allocated);
+          ModelColorSelect(Response.GetData.Model);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    SingleTaskDataGet();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, render]);
+
   const formDataUpdate = async (e) => {
     setFormDetail({ ...formDetail, [e.target?.name]: e.target?.value });
+  };
+
+  const TaskUpdate = async () => {
+    try {
+      const Response = (
+        await axios.post(`${BASE_URL}/api/TaskUpdate/${id}`, {
+          Job_No: formDetail.Job_No,
+          Model: formDetail.Model,
+          Colour: formDetail.Colour,
+          Metal_Code: formDetail.Metal_Code,
+          Fab_ID: formDetail.Fab_ID,
+          Status: formDetail.Status,
+          Message: formDetail.Message,
+          Price: formDetail.Price,
+          Date: formDetail.Date,
+        })
+      ).data;
+      setRender(true);
+      console.log(Response);
+
+      if (Response) NotificationMethod(Response.message, Response.status);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -69,6 +132,7 @@ const TaskUpdate = () => {
                     name="Job_No"
                     id="Job_No"
                     placeholder="4444444444444"
+                    value={formDetail.Job_No}
                     onChange={formDataUpdate}
                   />
                 </div>
@@ -81,19 +145,33 @@ const TaskUpdate = () => {
                       ModelColorSelect(e?.target?.value);
                       formDataUpdate(e);
                     }}
+                    value={formDetail.Model}
                   >
                     <option value="">Select Model</option>
-                    {allModels.map((value) => {
-                      return <option value={value.Name}>{value.Name}</option>;
+                    {allModels.map((value, index) => {
+                      return (
+                        <option value={value.Name} key={index}>
+                          {value.Name}
+                        </option>
+                      );
                     })}
                   </select>
                 </div>
                 <div className="TaskDetail">
                   <label htmlFor="Colour">Colour : </label>
-                  <select name="Colour" id="Colour" onChange={formDataUpdate}>
+                  <select
+                    name="Colour"
+                    id="Colour"
+                    onChange={formDataUpdate}
+                    value={formDetail.Colour}
+                  >
                     <option value="">Select Colour</option>
-                    {modelColor?.map((value) => {
-                      return <option value={value}>{value}</option>;
+                    {modelColor?.map((value, index) => {
+                      return (
+                        <option value={value} key={index}>
+                          {value}
+                        </option>
+                      );
                     })}
                   </select>
                 </div>
@@ -105,6 +183,7 @@ const TaskUpdate = () => {
                     id="Metal_Code"
                     placeholder=""
                     onChange={formDataUpdate}
+                    value={formDetail.Metal_Code}
                   />
                 </div>
                 <div className="TaskDetail">
@@ -115,14 +194,16 @@ const TaskUpdate = () => {
                     id="Fab_ID"
                     placeholder=""
                     onChange={formDataUpdate}
+                    value={formDetail.Fab_ID}
                   />
                 </div>
                 <div className="TaskDetail">
-                  <label htmlFor="Status_Allocated">Status Allocated : </label>
+                  <label htmlFor="Status">Status Allocated : </label>
                   <select
-                    name="Status_Allocated"
-                    id="Status_Allocated"
+                    name="Status"
+                    id="Status"
                     onChange={formDataUpdate}
+                    value={formDetail.Status}
                   >
                     <option value="">Select Model</option>
                     <option value="Service Center">Service Center</option>
@@ -140,6 +221,7 @@ const TaskUpdate = () => {
                     id="Price"
                     placeholder=""
                     onChange={formDataUpdate}
+                    value={formDetail.Price}
                   />
                 </div>
                 <div className="TaskDetail">
@@ -150,23 +232,43 @@ const TaskUpdate = () => {
                     cols="10"
                     rows="1"
                     onChange={formDataUpdate}
+                    value={formDetail.Message}
                   ></textarea>
                 </div>
                 <button
                   className="button-23"
                   style={{ marginTop: "20px" }}
-                  onClick={() => {}}
+                  onClick={() => {
+                    TaskUpdate();
+                  }}
                 >
                   Submit
                 </button>
               </div>
             </div>
             <div className="StatusDisplay">
-              <span>
-                <p>Time -</p>
-                <p style={{}}>Status</p>
-              </span>
-              <hr />
+              {statusHistory?.map((value, index) => {
+                const Date = value.Time.substring(0, 10);
+                const Time = value.Time.substring(12, 19);
+                return (
+                  <div className="StatusDisplay_history">
+                    <span>
+                      <p>{Date + "/" + Time} - </p>
+                      <p
+                        style={{
+                          backgroundColor: "#f9f9f9",
+                          padding: "10px",
+                          borderRadius: "10px",
+                          marginLeft: "5px",
+                        }}
+                      >
+                        {value.Status}
+                      </p>
+                    </span>
+                    <hr />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

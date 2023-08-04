@@ -25,21 +25,29 @@ const Tasks = () => {
             </div>
           </div>
           <div className="TaskCardDisplay">
-            {allTasks?.map((value) => {
+            {allTasks?.map((value, index) => {
               let StatusLength = value.Status_Allocated.length - 1;
               console.log(StatusLength);
               return (
-                <TaskCards
-                  Job_No={value.Job_No}
-                  Model={value.Model}
-                  Colour={value.Colour}
-                  Metal_Code={value.Metal_Code}
-                  Fab_ID={value.Fab_ID}
-                  Status={value.Status_Allocated[StatusLength].Status}
-                  Message={value.Message}
-                  Price={value.Price}
-                  Date={value.Date}
-                />
+                <div
+                  onClick={() => {
+                    navigate(`/task_Update/${value._id}`);
+                  }}
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                >
+                  <TaskCards
+                    Job_No={value.Job_No}
+                    Model={value.Model}
+                    Colour={value.Colour}
+                    Metal_Code={value.Metal_Code}
+                    Fab_ID={value.Fab_ID}
+                    Status={value.Status_Allocated[StatusLength].Status}
+                    Message={value.Message}
+                    Price={value.Price}
+                    Date={value.Date}
+                  />
+                </div>
               );
             })}
           </div>

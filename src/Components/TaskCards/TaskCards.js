@@ -13,6 +13,9 @@ const TaskCards = (props) => {
     Price,
     Date,
   } = props;
+  // const convertDate = Date.substring(0, 10);
+
+  const SmallContent = Message?.slice(0, 20);
   return (
     <div className="TaskCardsContainer">
       <div className="TaskDetail">
@@ -32,7 +35,7 @@ const TaskCards = (props) => {
           FAB ID : <span>{Fab_ID}</span>
         </p>
         <p>
-          Message : <span>{Message}</span>
+          Message : <span>{SmallContent}</span>
         </p>
         <p>
           Price : <span>{Price}</span>

@@ -1,0 +1,61 @@
+.MobileAddContainer {
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .MobileName {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  .MobileName > div > input {
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    color: #011627;
+    resize: none;
+    outline-color: #0077bd;
+  }
+
+  .MobileName,
+  .ColourNames > div > label {
+    font-size: medium;
+    font-weight: 500;
+    color: #3d5a80;
+  }
+
+  .ColourNames {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    display: flex;
+    padding: 17px;
+    flex-direction: column;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .ColourNames > div > span > input {
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    color: #011627;
+    resize: none;
+    outline-color: #0077bd;
+  }
+  .ColourNames > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+}

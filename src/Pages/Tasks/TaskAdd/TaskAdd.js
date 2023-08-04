@@ -31,7 +31,6 @@ const TaskAdd = () => {
   const formDataUpdate = async (e) => {
     setFormDetail({ ...formDetail, [e.target?.name]: e.target?.value });
   };
-  console.log(formDetail);
 
   return (
     <div className="AdminDashboardContainer">

@@ -1,0 +1,30 @@
+.ModelCardContainer {
+  display: flex;
+  font-family: "Inter", sans-serif;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .ModelCard {
+    font-weight: 500;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: auto;
+    border-radius: 10px;
+    padding: 15px 30px;
+    border: 2px solid #e5e7eb;
+  }
+
+  .ModelCard > span {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ModelCard > span > p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #5d6063;
+  }
+}
