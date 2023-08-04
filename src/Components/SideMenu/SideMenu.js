@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./SideMenu.css";
 import { AiTwotoneThunderbolt } from "react-icons/ai";
 import { HiOutlineHome } from "react-icons/hi2";
 import { FaTasks } from "react-icons/fa";
 import { BiMobileAlt } from "react-icons/bi";
+import { MdEngineering } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { AllContext } from "../../Context/Context";
 
 const SideMenu = () => {
-  const [active, setActive] = useState("Home");
+  const { setPage, page } = useContext(AllContext);
   return (
     <>
       <div className="SideMenuContainer">
@@ -18,8 +20,10 @@ const SideMenu = () => {
         <Link to="/home">
           <div
             className="SideOptions"
-            style={active.current === "Home" ? { color: "#000000" } : {}}
-            onClick={() => setActive("Home")}
+            style={page === "Home" ? { color: "#000000" } : {}}
+            onClick={() => {
+              setPage("Home");
+            }}
           >
             <HiOutlineHome className="SideMenuIcons" />
             <p>Home</p>
@@ -28,8 +32,10 @@ const SideMenu = () => {
         <Link to="/tasks">
           <div
             className="SideOptions"
-            style={active.current === "Tasks" ? { color: "#000000" } : {}}
-            onClick={() => setActive("Tasks")}
+            style={page === "Tasks" ? { color: "#000000" } : {}}
+            onClick={() => {
+              setPage("Tasks");
+            }}
           >
             <FaTasks className="SideMenuIcons" />
             <p>Tasks</p>
@@ -38,11 +44,21 @@ const SideMenu = () => {
         <Link to="/Mobiles">
           <div
             className="SideOptions"
-            style={active.current === "Tasks" ? { color: "#000000" } : {}}
-            onClick={() => setActive("Tasks")}
+            style={page === "Mobiles" ? { color: "#000000" } : {}}
+            onClick={() => setPage("Mobiles")}
           >
             <BiMobileAlt className="SideMenuIcons" />
             <p>Mobiles</p>
+          </div>
+        </Link>
+        <Link to="/Engineers">
+          <div
+            className="SideOptions"
+            style={page === "Engineers" ? { color: "#000000" } : {}}
+            onClick={() => setPage("Engineers")}
+          >
+            <MdEngineering className="SideMenuIcons" />
+            <p>Engineers</p>
           </div>
         </Link>
       </div>

@@ -8,7 +8,7 @@ import { AllContext } from "../../../Context/Context";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const ModelAdd = () => {
-  const { setRender, render, NotificationMethod } = useContext(AllContext);
+  const { setRender, NotificationMethod ,render} = useContext(AllContext);
   const [coloursvalue, setColoursValue] = useState([
     {
       value: "",
@@ -61,7 +61,7 @@ const ModelAdd = () => {
         Colour,
       });
       if (Response) {
-        setRender(true);
+        setRender(!render);
         NotificationMethod(Response.message, Response.status);
       }
     } catch (error) {

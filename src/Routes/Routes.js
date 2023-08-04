@@ -1,4 +1,5 @@
 import AdminDashboard from "../Pages/Dashboard/AdminDashboard";
+import Engineer from "../Pages/Engineers/Engineer";
 import Login from "../Pages/Login/Login";
 import Model from "../Pages/Model/Model";
 import ModelAdd from "../Pages/Model/ModelAdd/ModelAdd";
@@ -13,8 +14,9 @@ const AdminRoutes = [
   { path: "/tasks", element: <Tasks /> },
   { path: "/task_Add", element: <TaskAdd /> },
   { path: "/task_Update/:id", element: <TaskUpdate /> },
-  { path: "/Mobiles", element: <Model /> },
-  { path: "/Mobiles_Add", element: <ModelAdd /> },
+  { path: "/mobiles", element: <Model /> },
+  { path: "/mobiles_Add", element: <ModelAdd /> },
+  { path: "/engineers", element: <Engineer /> },
 ];
 
 const EngineerRoutes = [];

@@ -10,7 +10,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TaskUpdate = () => {
-  const { allModels, setRender, render, NotificationMethod } =
+  const { allModels, setRender, render, NotificationMethod , TaskDelete} =
     useContext(AllContext);
   const [modelColor, setModelColour] = useState([]);
   const [formDetail, setFormDetail] = useState({
@@ -87,7 +87,7 @@ const TaskUpdate = () => {
           Date: formDetail.Date,
         })
       ).data;
-      setRender(true);
+      setRender(!render);
       console.log(Response);
 
       if (Response) NotificationMethod(Response.message, Response.status);
@@ -235,15 +235,26 @@ const TaskUpdate = () => {
                     value={formDetail.Message}
                   ></textarea>
                 </div>
-                <button
-                  className="button-23"
-                  style={{ marginTop: "20px" }}
-                  onClick={() => {
-                    TaskUpdate();
-                  }}
-                >
-                  Submit
-                </button>
+                <div style={{ display: "flex", width: "100%" }}>
+                  <button
+                    className="button-23"
+                    style={{ marginTop: "20px", width: "100%" }}
+                    onClick={() => {
+                      TaskUpdate();
+                    }}
+                  >
+                    Submit
+                  </button>
+                  <button
+                    className="button-23"
+                    style={{ marginTop: "20px", width: "100%" }}
+                    onClick={() => {
+                      TaskDelete(id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
             <div className="StatusDisplay">

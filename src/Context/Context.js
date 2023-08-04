@@ -15,6 +15,8 @@ const AllProvider = ({ children }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [allModels, setModels] = useState();
   const [allTasks, setAllTasks] = useState([]);
+  const [info, setInfo] = useState();
+  const [page, setPage] = useState("Home");
   // const navigate = useNavigate()
 
   axios.defaults.headers.common["authtok"] = auth.token;
@@ -110,7 +112,7 @@ const AllProvider = ({ children }) => {
 
       if (Response) NotificationMethod(Response.message, Response.status);
 
-      setRender(true);
+      setRender(!render);
     } catch (error) {
       console.log(error);
       // alert(error.response.data.message);
@@ -118,6 +120,7 @@ const AllProvider = ({ children }) => {
     }
   };
 
+  //All Task Display
   const AllTaskDisplay = async () => {
     try {
       const Response = (await axios.get(`${BASE_URL}/api/TaskDisplay`)).data;
@@ -127,11 +130,34 @@ const AllProvider = ({ children }) => {
     }
   };
 
+  //User Information Get 
+  const UserInformationGet = async () => {
+    try {
+      const Response = (await axios.get(`${BASE_URL}/api/UserInformationShare`))
+        .data;
+      if (Response) setInfo(Response.UserInformation);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const TaskDelete = async (_id) => {
+    try {
+      const Response = (await axios.delete(`${BASE_URL}/api/TaskDelete/${_id}`))
+        .data;
+      setRender(!render);
+      if (Response) NotificationMethod(Response.message, Response.status);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   useEffect(() => {
-    setRender(false);
+    // setRender(!render);
     if (isSignedIn) {
       ModelsGet();
       AllTaskDisplay();
+      UserInformationGet();
     }
     if (auth.token) {
       Authentication();
@@ -151,6 +177,10 @@ const AllProvider = ({ children }) => {
         render,
         setRender,
         NotificationMethod,
+        info,
+        setPage,
+        page,
+        TaskDelete,
       }}
     >
       {children}
