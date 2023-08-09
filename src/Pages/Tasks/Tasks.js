@@ -10,7 +10,7 @@ import { AllContext } from "../../Context/Context";
 
 const Tasks = () => {
   const navigate = useNavigate();
-  const { allTasks } = useContext(AllContext);
+  const { allTasks, role } = useContext(AllContext);
   return (
     <div className="AdminDashboardContainer">
       <SideMenu />
@@ -19,10 +19,12 @@ const Tasks = () => {
         <div className="PageData">
           <div className="TaskOptions">
             <p>All Tasks</p>
-            <div onClick={() => navigate("/task_Add")}>
-              <IoIosAdd style={{ fontSize: "20px" }} />
-              <p>Create Task</p>
-            </div>
+            {role === "Admin" ? (
+              <div onClick={() => navigate("/task_Add")}>
+                <IoIosAdd style={{ fontSize: "20px" }} />
+                <p>Create Task</p>
+              </div>
+            ) : null}
           </div>
           <div className="TaskCardDisplay">
             {allTasks?.map((value, index) => {

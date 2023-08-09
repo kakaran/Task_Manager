@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./TaskCards.css";
+import { AllContext } from "../../Context/Context";
 
 const TaskCards = (props) => {
+  const { role } = useContext(AllContext);
   const {
     Job_No,
     Model,
@@ -37,9 +39,11 @@ const TaskCards = (props) => {
         <p>
           Message : <span>{SmallContent}</span>
         </p>
-        <p>
-          Price : <span>{Price}</span>
-        </p>
+        {role === "Engineer" ? null : (
+          <p>
+            Price : <span>{Price}</span>
+          </p>
+        )}
       </div>
       <div className="TaskStatus">
         <p>{Date}</p>

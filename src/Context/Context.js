@@ -151,13 +151,13 @@ const AllProvider = ({ children }) => {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
     // setRender(!render);
     if (isSignedIn) {
+      UserInformationGet();
       ModelsGet();
       AllTaskDisplay();
-      UserInformationGet();
     }
     if (auth.token) {
       Authentication();

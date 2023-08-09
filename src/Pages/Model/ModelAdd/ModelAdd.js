@@ -8,7 +8,7 @@ import { AllContext } from "../../../Context/Context";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const ModelAdd = () => {
-  const { setRender, NotificationMethod ,render} = useContext(AllContext);
+  const { setRender, NotificationMethod, render } = useContext(AllContext);
   const [coloursvalue, setColoursValue] = useState([
     {
       value: "",
@@ -88,7 +88,7 @@ const ModelAdd = () => {
                 />
               </div>
               <button className="button-23" onClick={ColourAddApicall}>
-                + Add Mobile
+                + Submit
               </button>
             </div>
             <div className="ColourNames">

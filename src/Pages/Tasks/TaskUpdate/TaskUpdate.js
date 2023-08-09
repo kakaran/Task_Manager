@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import React, { useContext, useEffect, useState } from "react";
 import "../../Dashboard/Dashboard.css";
 import "./TaskUpdate.css";
@@ -10,7 +11,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TaskUpdate = () => {
-  const { allModels, setRender, render, NotificationMethod , TaskDelete} =
+  const { allModels, setRender, render, NotificationMethod, TaskDelete, role } =
     useContext(AllContext);
   const [modelColor, setModelColour] = useState([]);
   const [formDetail, setFormDetail] = useState({
@@ -26,10 +27,13 @@ const TaskUpdate = () => {
   });
   const [statusHistory, setStatusHistory] = useState();
   const { id } = useParams("id");
+  const [CheckValidation, setCheckValidation] = useState(
+    role === "Engineer" ? false : true
+  );
 
   const ModelColorSelect = async (value) => {
     // eslint-disable-next-line array-callback-return
-    allModels.map((value1) => {
+    allModels?.map((value1) => {
       if (value1.Name === value) setModelColour(value1.Colour);
     });
   };
@@ -74,19 +78,27 @@ const TaskUpdate = () => {
 
   const TaskUpdate = async () => {
     try {
-      const Response = (
-        await axios.post(`${BASE_URL}/api/TaskUpdate/${id}`, {
-          Job_No: formDetail.Job_No,
-          Model: formDetail.Model,
-          Colour: formDetail.Colour,
-          Metal_Code: formDetail.Metal_Code,
-          Fab_ID: formDetail.Fab_ID,
-          Status: formDetail.Status,
-          Message: formDetail.Message,
-          Price: formDetail.Price,
-          Date: formDetail.Date,
-        })
-      ).data;
+      const Response = "";
+      // eslint-disable-next-line no-lone-blocks
+      {
+        role === "Admin"
+          ? (Response = (
+              await axios.post(`${BASE_URL}/api/TaskUpdate/${id}`, {
+                Job_No: formDetail.Job_No,
+                Model: formDetail.Model,
+                Colour: formDetail.Colour,
+                Metal_Code: formDetail.Metal_Code,
+                Fab_ID: formDetail.Fab_ID,
+                Status: formDetail.Status,
+                Message: formDetail.Message,
+                Price: formDetail.Price,
+                Date: formDetail.Date,
+              })
+            ).data)
+          : (Response = await axios.post(`${BASE_URL}/api/TaskUpdate/${id}`, {
+              Status: formDetail.Status,
+            }).data);
+      }
       setRender(!render);
       console.log(Response);
 
@@ -122,6 +134,7 @@ const TaskUpdate = () => {
                   value={formDetail.Date}
                   onChange={formDataUpdate}
                   style={{ outline: "none" }}
+                  disabled={CheckValidation}
                 />
               </div>
               <div className="TaskInput">
@@ -134,6 +147,7 @@ const TaskUpdate = () => {
                     placeholder="4444444444444"
                     value={formDetail.Job_No}
                     onChange={formDataUpdate}
+                    disabled={CheckValidation}
                   />
                 </div>
                 <div className="TaskDetail">
@@ -146,9 +160,10 @@ const TaskUpdate = () => {
                       formDataUpdate(e);
                     }}
                     value={formDetail.Model}
+                    disabled={CheckValidation}
                   >
                     <option value="">Select Model</option>
-                    {allModels.map((value, index) => {
+                    {allModels?.map((value, index) => {
                       return (
                         <option value={value.Name} key={index}>
                           {value.Name}
@@ -164,6 +179,7 @@ const TaskUpdate = () => {
                     id="Colour"
                     onChange={formDataUpdate}
                     value={formDetail.Colour}
+                    disabled={CheckValidation}
                   >
                     <option value="">Select Colour</option>
                     {modelColor?.map((value, index) => {
@@ -184,6 +200,7 @@ const TaskUpdate = () => {
                     placeholder=""
                     onChange={formDataUpdate}
                     value={formDetail.Metal_Code}
+                    disabled={CheckValidation}
                   />
                 </div>
                 <div className="TaskDetail">
@@ -195,6 +212,7 @@ const TaskUpdate = () => {
                     placeholder=""
                     onChange={formDataUpdate}
                     value={formDetail.Fab_ID}
+                    disabled={CheckValidation}
                   />
                 </div>
                 <div className="TaskDetail">
@@ -206,24 +224,32 @@ const TaskUpdate = () => {
                     value={formDetail.Status}
                   >
                     <option value="">Select Model</option>
-                    <option value="Service Center">Service Center</option>
-                    <option value="Vender">Vender</option>
-                    <option value="Owner">Owner</option>
+                    {role === "Engineer" ? null : (
+                      <>
+                        <option value="Service Center">Service Center</option>
+                        <option value="Vender">Vender</option>
+                        <option value="Owner">Owner</option>
+                      </>
+                    )}
+
                     <option value="Engineer">Engineer</option>
                     <option value="RMA">RMA</option>
                   </select>
                 </div>
-                <div className="TaskDetail">
-                  <label htmlFor="Price">Price : </label>
-                  <input
-                    type="number"
-                    name="Price"
-                    id="Price"
-                    placeholder=""
-                    onChange={formDataUpdate}
-                    value={formDetail.Price}
-                  />
-                </div>
+                {role === "Engineer" ? null : (
+                  <div className="TaskDetail">
+                    <label htmlFor="Price">Price : </label>
+                    <input
+                      type="number"
+                      name="Price"
+                      id="Price"
+                      placeholder=""
+                      onChange={formDataUpdate}
+                      value={formDetail.Price}
+                    />
+                  </div>
+                )}
+
                 <div className="TaskDetail">
                   <label htmlFor="Message">Message : </label>
                   <textarea
@@ -233,9 +259,10 @@ const TaskUpdate = () => {
                     rows="1"
                     onChange={formDataUpdate}
                     value={formDetail.Message}
+                    disabled={CheckValidation}
                   ></textarea>
                 </div>
-                <div style={{ display: "flex", width: "100%" }}>
+                <div style={{ display: "flex", width: "100%", gap: "15px" }}>
                   <button
                     className="button-23"
                     style={{ marginTop: "20px", width: "100%" }}
@@ -245,15 +272,17 @@ const TaskUpdate = () => {
                   >
                     Submit
                   </button>
-                  <button
-                    className="button-23"
-                    style={{ marginTop: "20px", width: "100%" }}
-                    onClick={() => {
-                      TaskDelete(id);
-                    }}
-                  >
-                    Delete
-                  </button>
+                  {role === "Engineer" ? null : (
+                    <button
+                      className="button-23"
+                      style={{ marginTop: "20px", width: "100%" }}
+                      onClick={() => {
+                        TaskDelete(id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

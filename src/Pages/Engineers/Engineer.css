@@ -1,3 +1,30 @@
-.CardContainer{
-    
+.TaskCardDisplay{
+    display: flex;
+}
+
+.CardContainer {
+  width: auto;
+  border-radius: 10px;
+  display: flex;
+flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  /* align-items: end; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 2px solid #e5e7eb;
+  gap: 10px;
+}
+
+.CardContainer > span {
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.CardContainer > span > p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #5d6063;
 }

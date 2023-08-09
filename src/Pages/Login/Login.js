@@ -10,7 +10,7 @@ const Login = () => {
   const [Email, setEmail] = useState();
   const [Password, setPassword] = useState();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const { setAuth } = useContext(AllContext);
+  const { setAuth,NotificationMethod } = useContext(AllContext);
   const navigate = useNavigate();
 
   //Login Api call
@@ -19,6 +19,7 @@ const Login = () => {
       const Data = (
         await axios.post(`${BASE_URL}/api/login`, { Email, Password })
       ).data;
+      NotificationMethod(Data.message,Data.status)
       if (Data.token) {
         localStorage.setItem("auth", JSON.stringify(Data));
         // Authentication(Data.token)
@@ -29,32 +30,33 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
+      NotificationMethod(error.response.data.message,error.response.data.status)
     }
   };
 
-  const Emailcheck = () => {
-    // Email Check Syntax is correct or not
-    if (Email) {
-      if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i?.test(Email)) {
-        return "Valid email address";
-      } else {
-        return "Invalid email address";
-      }
-    }
-  };
+  // const Emailcheck = () => {
+  //   // Email Check Syntax is correct or not
+  //   if (Email) {
+  //     if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i?.test(Email)) {
+  //       return "Valid email address";
+  //     } else {
+  //       return "Invalid email address";
+  //     }
+  //   }
+  // };
 
-  const PasswordCheck = () => {
-    // Password Check Syntax is correct or not
-    if (Password) {
-      if (
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/?.test(
-          Password
-        )
-      ) {
-        return "Valid password";
-      } else return "Invalid password";
-    }
-  };
+  // const PasswordCheck = () => {
+  //   // Password Check Syntax is correct or not
+  //   if (Password) {
+  //     if (
+  //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/?.test(
+  //         Password
+  //       )
+  //     ) {
+  //       return "Valid password";
+  //     } else return "Invalid password";
+  //   }
+  // };
 
   return (
     <>
@@ -77,9 +79,9 @@ const Login = () => {
                 onChange={(e) => setEmail(e?.target?.value)}
               />
             </span>
-            <p className={`${!Email ? "hidden" : ""} text-center`}>
+            {/* <p className={`${!Email ? "hidden" : ""} text-center`}>
               {Emailcheck()}
-            </p>
+            </p> */}
             <span className="loginInputSpan">
               <FaLock className="text-[#c2c2c2]" />
               <input
@@ -88,9 +90,9 @@ const Login = () => {
                 onChange={(e) => setPassword(e?.target?.value)}
               />
             </span>
-            <p className={`${!Password ? "hidden" : ""} text-center`}>
+            {/* <p className={`${!Password ? "hidden" : ""} text-center`}>
               {PasswordCheck()}
-            </p>
+            </p> */}
             <button onClick={UserLogin}>Login</button>
             <p className="text-center mt-3 text-base cursor-pointer hover:border-b hover:border-b-teal-500 hover:rounded-full  ">
               Forgot Password

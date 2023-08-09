@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { AllContext } from "../../Context/Context";
 
 const SideMenu = () => {
-  const { setPage, page } = useContext(AllContext);
+  const { setPage, page, role } = useContext(AllContext);
   return (
     <>
       <div className="SideMenuContainer">
@@ -41,26 +41,30 @@ const SideMenu = () => {
             <p>Tasks</p>
           </div>
         </Link>
-        <Link to="/Mobiles">
-          <div
-            className="SideOptions"
-            style={page === "Mobiles" ? { color: "#000000" } : {}}
-            onClick={() => setPage("Mobiles")}
-          >
-            <BiMobileAlt className="SideMenuIcons" />
-            <p>Mobiles</p>
-          </div>
-        </Link>
-        <Link to="/Engineers">
-          <div
-            className="SideOptions"
-            style={page === "Engineers" ? { color: "#000000" } : {}}
-            onClick={() => setPage("Engineers")}
-          >
-            <MdEngineering className="SideMenuIcons" />
-            <p>Engineers</p>
-          </div>
-        </Link>
+        {role === "Engineer" ? null : (
+          <>
+            <Link to="/Mobiles">
+              <div
+                className="SideOptions"
+                style={page === "Mobiles" ? { color: "#000000" } : {}}
+                onClick={() => setPage("Mobiles")}
+              >
+                <BiMobileAlt className="SideMenuIcons" />
+                <p>Mobiles</p>
+              </div>
+            </Link>
+            <Link to="/Engineers">
+              <div
+                className="SideOptions"
+                style={page === "Engineers" ? { color: "#000000" } : {}}
+                onClick={() => setPage("Engineers")}
+              >
+                <MdEngineering className="SideMenuIcons" />
+                <p>Engineers</p>
+              </div>
+            </Link>
+          </>
+        )}
       </div>
     </>
   );

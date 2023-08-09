@@ -1,0 +1,107 @@
+.UserInfoConatiner {
+  /* border: 1px solid black; */
+  /* height: 100vh; */
+  padding: 10px;
+}
+
+.UserInfoConatiner > p:nth-child(1) {
+  margin: 10px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.UserImageName {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #e0e5ec;
+  padding: 20px;
+  box-shadow: #ffffff 0px 2px 8px 0px;
+  border-radius: 10px;
+  align-items: start;
+}
+
+.UserImageName > div {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.ImageUplaodContainer {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  display: inline-flex;
+  border: 2px dashed;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ImageUplaodContainer:hover {
+  border-color: #b278f5;
+}
+
+.ImageUplaodContainer > label {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ImageUplaodContainer input {
+  display: none;
+}
+
+.UserImageName > div > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  /* z-index: 10000; */
+}
+
+.UserImageName > div > p {
+  font-weight: 600;
+  font-size: large;
+}
+
+.Personal-Information {
+  border: 2px solid #e0e5ec;
+  padding: 20px;
+  box-shadow: #ffffff 0px 2px 8px 0px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.Personal-Information > div > p {
+  margin: 10px;
+  font-size: large;
+  font-weight: 600;
+}
+
+.FirstTab {
+  display: flex;
+  padding: 10px;
+  gap: 40px;
+}
+
+.FirstTab > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.FirstTab > label,
+input {
+  background-color: white;
+  font-weight: 600;
+  color: #222223;
+  outline: none;
+}
+
+.FirstTab > div > input:focus {
+  outline: none;
+  border-bottom: 1px solid;
+}
