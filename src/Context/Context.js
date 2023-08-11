@@ -154,11 +154,11 @@ const AllProvider = ({ children }) => {
 
   useEffect(() => {
     // setRender(!render);
-    if (isSignedIn) {
+    // if (isSignedIn) {
       UserInformationGet();
       ModelsGet();
       AllTaskDisplay();
-    }
+    // }
     if (auth.token) {
       Authentication();
     }
