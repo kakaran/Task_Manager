@@ -23,7 +23,7 @@ const TaskAdd = () => {
 
   const ModelColorSelect = async (value) => {
     // eslint-disable-next-line array-callback-return
-    allModels.map((value1) => {
+    allModels?.map((value1) => {
       if (value1.Name === value) setModelColour(value1.Colour);
     });
   };
@@ -82,7 +82,7 @@ const TaskAdd = () => {
                     }}
                   >
                     <option value="">Select Model</option>
-                    {allModels.map((value) => {
+                    {allModels?.map((value) => {
                       return <option value={value.Name}>{value.Name}</option>;
                     })}
                   </select>

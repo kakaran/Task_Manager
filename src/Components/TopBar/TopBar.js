@@ -12,7 +12,7 @@ const TopBar = () => {
 
   return (
     <div className="TopBarContainer">
-      <p>TaskBar {page}</p>
+      <p>{page}</p>
       <div
         className="TopBarUserDetail"
         onClick={() => {
@@ -22,7 +22,7 @@ const TopBar = () => {
       >
         <p>{FName && LName ? FName + " " + LName : null}</p>
         <div className="avatarContainer">
-          <img src={image ? image : AvtarImage}  alt="Avatar" />
+          <img src={image ? image : AvtarImage} alt="Avatar" />
         </div>
       </div>
     </div>

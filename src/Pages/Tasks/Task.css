@@ -13,7 +13,7 @@
   font-weight: 400;
 }
 
-.TaskOptions > div {
+.TaskOptions > div > div {
   display: flex;
   align-items: center;
   justify-content: center;

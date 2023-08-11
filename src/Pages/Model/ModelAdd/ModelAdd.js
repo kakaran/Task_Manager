@@ -54,7 +54,7 @@ const ModelAdd = () => {
   const ColourAddApicall = async () => {
     try {
       const Colour = [];
-      coloursvalue.map((value) => Colour.push(value.value));
+      coloursvalue?.map((value) => Colour.push(value.value));
       const Name = mobileCode;
       const Response = await axios.post(`${BASE_URL}/api/ModelAdd`, {
         Name,

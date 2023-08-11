@@ -61,7 +61,7 @@ const Model = () => {
                   </div>
                   <span>
                     Colour :
-                    {value.Colour.map((value1, index) => {
+                    {value.Colour?.map((value1, index) => {
                       return (
                         <p key={index}>
                           {value1}

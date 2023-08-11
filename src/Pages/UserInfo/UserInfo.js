@@ -7,6 +7,7 @@ import { AllContext } from "../../Context/Context";
 import { useFormik } from "formik";
 import { UserInfoSchema } from "../../Schemas/Schemas";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // import {logo} from "../../Assets/"
 
 const UserInfo = () => {
@@ -18,8 +19,7 @@ const UserInfo = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const AvtarImage =
     "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";
-
-
+  const navigate = useNavigate();
   const initialValues = {
     FName: info?.FName,
     LName: info?.LName,
@@ -52,7 +52,6 @@ const UserInfo = () => {
       },
     });
 
-
   const ImageUploder = async () => {
     try {
       let formData = new FormData();
@@ -75,7 +74,16 @@ const UserInfo = () => {
       console.log(error);
     }
   };
-  console.log(info.image);
+
+  const LogoutMethod = () => {
+    try {
+      localStorage.removeItem("auth");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="UserInfoContainer">
       <div className="AdminDashboardContainer">
@@ -84,14 +92,14 @@ const UserInfo = () => {
           <TopBar />
           <div className="PageData">
             <div className="UserInfoConatiner">
-              <p>My Profile</p>
+              <span className="flex justify-between items-center m-2">
+                <p>My Profile</p>
+                <button className="button-28" onClick={LogoutMethod}>Logout</button>
+              </span>
               <div className="UserImageName">
                 <div>
                   {!imageInput ? (
-                    <img
-                      src={info.image ? info.image : AvtarImage}
-                      alt=""
-                    />
+                    <img src={info?.image ? info?.image : AvtarImage} alt="" />
                   ) : (
                     <div className="ImageUplaodContainer">
                       <label htmlFor="image">

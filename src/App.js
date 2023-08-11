@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {routes(role, isSignedIn).map((route, index) => {
+        {routes(role, isSignedIn)?.map((route, index) => {
           return <Route key={index} {...route} />;
         })}
       </Routes>

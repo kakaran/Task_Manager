@@ -34,30 +34,6 @@ const Login = () => {
     }
   };
 
-  // const Emailcheck = () => {
-  //   // Email Check Syntax is correct or not
-  //   if (Email) {
-  //     if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i?.test(Email)) {
-  //       return "Valid email address";
-  //     } else {
-  //       return "Invalid email address";
-  //     }
-  //   }
-  // };
-
-  // const PasswordCheck = () => {
-  //   // Password Check Syntax is correct or not
-  //   if (Password) {
-  //     if (
-  //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/?.test(
-  //         Password
-  //       )
-  //     ) {
-  //       return "Valid password";
-  //     } else return "Invalid password";
-  //   }
-  // };
-
   return (
     <>
       <div className="LoginContainer">

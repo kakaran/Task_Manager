@@ -16,6 +16,7 @@ const TaskCards = (props) => {
     Date,
   } = props;
   // const convertDate = Date.substring(0, 10);
+  console.log(Message, props);
 
   const SmallContent = Message?.slice(0, 20);
   return (
@@ -41,7 +42,8 @@ const TaskCards = (props) => {
         </p>
         {role === "Engineer" ? null : (
           <p>
-            Price : <span>{Price}</span>
+            Price : <span><sup>₹</sup>
+            {Price}</span>
           </p>
         )}
       </div>

@@ -27,9 +27,7 @@ const TaskUpdate = () => {
   });
   const [statusHistory, setStatusHistory] = useState();
   const { id } = useParams("id");
-  const [CheckValidation, setCheckValidation] = useState(
-    role === "Engineer" ? false : true
-  );
+  const [CheckValidation, setCheckValidation] = useState(false);
 
   const ModelColorSelect = async (value) => {
     // eslint-disable-next-line array-callback-return
@@ -45,8 +43,7 @@ const TaskUpdate = () => {
           await axios.get(`${BASE_URL}/api/SingleTaskDataGet/${id}`)
         ).data;
 
-        const lastStatus = Response.GetData.Status_Allocated.length - 1;
-
+        const lastStatus = Response.GetData.Status_Allocated_Message.length - 1;
         if (Response);
         // eslint-disable-next-line no-lone-blocks
         {
@@ -56,21 +53,24 @@ const TaskUpdate = () => {
             Colour: Response.GetData.Colour,
             Metal_Code: Response.GetData.Metal_Code,
             Fab_ID: Response.GetData.Fab_ID,
-            Status: Response.GetData.Status_Allocated[lastStatus].Status,
-            Message: Response.GetData.Message,
+            Status:
+              Response.GetData.Status_Allocated_Message[lastStatus]?.Status,
+            Message:
+              Response.GetData.Status_Allocated_Message[lastStatus]?.Message,
             Price: Response.GetData.Price,
             Date: Response.GetData.Date,
           });
-          setStatusHistory(Response.GetData.Status_Allocated);
+          setStatusHistory(Response.GetData.Status_Allocated_Message);
           ModelColorSelect(Response.GetData.Model);
         }
+        setCheckValidation(role === "Admin" ? false : true);
       } catch (error) {
         console.log(error);
       }
     };
     SingleTaskDataGet();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, render]);
+  }, [id, render, role]);
 
   const formDataUpdate = async (e) => {
     setFormDetail({ ...formDetail, [e.target?.name]: e.target?.value });
@@ -78,7 +78,7 @@ const TaskUpdate = () => {
 
   const TaskUpdate = async () => {
     try {
-      const Response = "";
+      let Response = null;
       // eslint-disable-next-line no-lone-blocks
       {
         role === "Admin"
@@ -100,8 +100,6 @@ const TaskUpdate = () => {
             }).data);
       }
       setRender(!render);
-      console.log(Response);
-
       if (Response) NotificationMethod(Response.message, Response.status);
     } catch (error) {
       console.log(error);
@@ -262,6 +260,7 @@ const TaskUpdate = () => {
                     disabled={CheckValidation}
                   ></textarea>
                 </div>
+
                 <div style={{ display: "flex", width: "100%", gap: "15px" }}>
                   <button
                     className="button-23"
@@ -305,6 +304,7 @@ const TaskUpdate = () => {
                         {value.Status}
                       </p>
                     </span>
+                    <p className="text-center w-[280px]">{value.Message}</p>
                     <hr />
                   </div>
                 );
