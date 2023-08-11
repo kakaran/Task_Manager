@@ -163,7 +163,7 @@ const AllProvider = ({ children }) => {
       Authentication();
     }
     SignedInStatus();
-  }, [render, auth]);
+  }, [render, auth.token]);
 
   return (
     <AllContext.Provider
