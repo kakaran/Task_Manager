@@ -31,7 +31,6 @@ const UserInfo = () => {
       initialValues,
       validationSchema: UserInfoSchema,
       onSubmit: async (values) => {
-        console.log("hello");
         const { FName, LName, PhoneNo } = values;
 
         await axios

@@ -12,8 +12,8 @@ import axios from "axios";
 
 const Model = () => {
   const navigate = useNavigate();
-  const { NotificationMethod, render, setRender } = useContext(AllContext);
-  const { allModels } = useContext(AllContext);
+  const { NotificationMethod, render, setRender, allModels } =
+    useContext(AllContext);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const ModelDelete = async (_id) => {
@@ -38,9 +38,11 @@ const Model = () => {
         <div className="PageData">
           <div className="TaskOptions">
             <p>All Models</p>
-            <div onClick={() => navigate("/Mobiles_Add")}>
-              <IoIosAdd style={{ fontSize: "20px" }} />
-              <p>Add Model</p>
+            <div>
+              <div onClick={() => navigate("/Mobiles_Add")}>
+                <IoIosAdd style={{ fontSize: "20px" }} />
+                <p>Add Model</p>
+              </div>
             </div>
           </div>
           <div className="ModelCardContainer">

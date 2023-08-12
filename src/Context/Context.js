@@ -15,7 +15,7 @@ const AllProvider = ({ children }) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [allModels, setModels] = useState();
   const [allTasks, setAllTasks] = useState([]);
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState(null);
   const [page, setPage] = useState("Home");
   // const navigate = useNavigate()
 
@@ -130,7 +130,7 @@ const AllProvider = ({ children }) => {
     }
   };
 
-  //User Information Get 
+  //User Information Get
   const UserInformationGet = async () => {
     try {
       const Response = (await axios.get(`${BASE_URL}/api/UserInformationShare`))
@@ -154,16 +154,16 @@ const AllProvider = ({ children }) => {
 
   useEffect(() => {
     // setRender(!render);
-    // if (isSignedIn) {
+    if (isSignedIn) {
       UserInformationGet();
       ModelsGet();
       AllTaskDisplay();
-    // }
+    }
     if (auth.token) {
       Authentication();
     }
     SignedInStatus();
-  }, [render, auth.token]);
+  }, [render, auth.token, isSignedIn]);
 
   return (
     <AllContext.Provider
