@@ -10,21 +10,42 @@ import { AllContext } from "../../Context/Context";
 
 const Tasks = () => {
   const navigate = useNavigate();
-  const { allTasks, role } = useContext(AllContext);
+  const { allTasks, role, homeField, setHomeField , setPage} = useContext(AllContext);
   const [filterData, setFilterData] = useState(allTasks);
   const [jobFilter, setJobFilter] = useState(null);
   const selectDate = useRef();
+
   useEffect(() => {
     setFilterData(allTasks);
+    setPage("Task")
+    if (homeField) {
+      const FilterData = allTasks.filter((item) => {
+        return (
+          item.Status_Allocated_Message[
+            item.Status_Allocated_Message.length - 1
+          ].Status === homeField
+        );
+      });
+      setFilterData(FilterData);
+    }
   }, [allTasks]);
 
   const DateTaskFilter = () => {
     try {
-      const GetFilterData = allTasks.filter(
-        (filter) => filter.Date === selectDate.current
-      );
-
-      setFilterData(GetFilterData);
+      const GetFilterData = allTasks.filter((filter) => {
+        return filter.Date === selectDate.current;
+      });
+      if (homeField) {
+        const value = GetFilterData.filter(
+          (item) =>
+            item.Status_Allocated_Message[
+              item.Status_Allocated_Message.length - 1
+            ].Status === homeField
+        );
+        setFilterData(value);
+      } else {
+        setFilterData(GetFilterData);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +59,11 @@ const Tasks = () => {
         <div className="PageData">
           <div className="TaskOptions">
             <p
-              onClick={() => {setFilterData(allTasks);selectDate.current = ""}}
+              onClick={() => {
+                setFilterData(allTasks);
+                selectDate.current = "";
+                setHomeField(null)
+              }}
               className="cursor-pointer"
             >
               All Tasks

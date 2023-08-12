@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TopBar from "../../../Components/TopBar/TopBar";
 import SideMenu from "../../../Components/SideMenu/SideMenu";
 import "../../Dashboard/Dashboard.css";
@@ -18,6 +18,7 @@ const EngineerAdd = () => {
   const { NotificationMethod } = useContext(AllContext);
   const [emailVerify, setEmailVerify] = useState(false);
   const [passwordVerify, setPasswordVerify] = useState(false);
+  const { setPage } = useContext(AllContext);
 
   const formDataUpdate = async (e) => {
     setFormDetail({ ...formDetail, [e.target?.name]: e.target?.value });
@@ -50,14 +51,16 @@ const EngineerAdd = () => {
   const EngineerAdd = async () => {
     try {
       const { FName, LName, Password, Email, PhoneNo } = formDetail;
-        
-      const Response =( await axios.post(`${BASE_URL}/api/CreateAcount`, {
-        FName,
-        LName,
-        Password,
-        Email,
-        PhoneNo,
-      })).data
+
+      const Response = (
+        await axios.post(`${BASE_URL}/api/CreateAcount`, {
+          FName,
+          LName,
+          Password,
+          Email,
+          PhoneNo,
+        })
+      ).data;
 
       if (Response.status) {
         NotificationMethod(Response.message, Response.status);
@@ -67,9 +70,13 @@ const EngineerAdd = () => {
       console.log(Response.response);
     } catch (error) {
       console.log(error.response.data.message);
-      NotificationMethod(error.response.data.message)
+      NotificationMethod(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    setPage("Engineer");
+  }, []);
 
   return (
     <div className="AdminDashboardContainer">

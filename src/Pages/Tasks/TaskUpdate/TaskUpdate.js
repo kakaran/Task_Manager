@@ -11,7 +11,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TaskUpdate = () => {
-  const { allModels, setRender, render, NotificationMethod, TaskDelete, role } =
+  const { allModels, setRender, render, NotificationMethod, TaskDelete, role,setPage } =
     useContext(AllContext);
   const [modelColor, setModelColour] = useState([]);
   const [formDetail, setFormDetail] = useState({
@@ -37,6 +37,7 @@ const TaskUpdate = () => {
   };
 
   useEffect(() => {
+    setPage("Task")
     const SingleTaskDataGet = async () => {
       try {
         const Response = (

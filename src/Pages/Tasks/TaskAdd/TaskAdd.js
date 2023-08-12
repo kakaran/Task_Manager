@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../Dashboard/Dashboard.css";
 import SideMenu from "../../../Components/SideMenu/SideMenu";
 import TopBar from "../../../Components/TopBar/TopBar";
@@ -6,7 +6,7 @@ import "./TaskAdd.css";
 import { AllContext } from "../../../Context/Context";
 
 const TaskAdd = () => {
-  const { allModels, TaskAdd } = useContext(AllContext);
+  const { allModels, TaskAdd, setPage } = useContext(AllContext);
   const [modelColor, setModelColour] = useState([]);
   const getDate = new Date();
   const [formDetail, setFormDetail] = useState({
@@ -31,6 +31,10 @@ const TaskAdd = () => {
   const formDataUpdate = async (e) => {
     setFormDetail({ ...formDetail, [e.target?.name]: e.target?.value });
   };
+
+  useEffect(() => {
+    setPage("Task");
+  }, []);
 
   return (
     <div className="AdminDashboardContainer">

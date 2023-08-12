@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../Dashboard/Dashboard.css";
 import "./ModelAdd.css";
 import TopBar from "../../../Components/TopBar/TopBar";
@@ -8,7 +8,8 @@ import { AllContext } from "../../../Context/Context";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const ModelAdd = () => {
-  const { setRender, NotificationMethod, render } = useContext(AllContext);
+  const { setRender, NotificationMethod, render, setPage } =
+    useContext(AllContext);
   const [coloursvalue, setColoursValue] = useState([
     {
       value: "",
@@ -68,6 +69,10 @@ const ModelAdd = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    setPage("Mobile");
+  }, []);
 
   return (
     <div className="AdminDashboardContainer">

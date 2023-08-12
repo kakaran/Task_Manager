@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../Dashboard/Dashboard.css";
 import "../Tasks/Tasks";
 import "./Model.css";
@@ -12,9 +12,13 @@ import axios from "axios";
 
 const Model = () => {
   const navigate = useNavigate();
-  const { NotificationMethod, render, setRender, allModels } =
+  const { NotificationMethod, render, setRender, allModels, setPage } =
     useContext(AllContext);
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+  useEffect(() => {
+    setPage("Mobile");
+  }, []);
 
   const ModelDelete = async (_id) => {
     try {

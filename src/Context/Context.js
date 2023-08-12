@@ -17,6 +17,8 @@ const AllProvider = ({ children }) => {
   const [allTasks, setAllTasks] = useState([]);
   const [info, setInfo] = useState(null);
   const [page, setPage] = useState("Home");
+  const [allTask,setAllTask] = useState();
+  const [homeField,setHomeField] = useState(null)
   // const navigate = useNavigate()
 
   axios.defaults.headers.common["authtok"] = auth.token;
@@ -152,12 +154,22 @@ const AllProvider = ({ children }) => {
     }
   };
 
+  const AllTaskList = async () => {
+    try {
+      const Response = (await axios.get(`${BASE_URL}/api/TaskDetailGet`)).data;
+      if(Response) setAllTask(Response.AllTasks)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     // setRender(!render);
     if (isSignedIn) {
       UserInformationGet();
-      ModelsGet();
+      AllTaskList();
       AllTaskDisplay();
+      ModelsGet();
     }
     if (auth.token) {
       Authentication();
@@ -181,6 +193,9 @@ const AllProvider = ({ children }) => {
         setPage,
         page,
         TaskDelete,
+        allTask,
+        setHomeField,
+        homeField
       }}
     >
       {children}

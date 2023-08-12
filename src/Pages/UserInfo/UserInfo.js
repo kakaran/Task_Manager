@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../Dashboard/Dashboard.css";
 import TopBar from "../../Components/TopBar/TopBar";
 import SideMenu from "../../Components/SideMenu/SideMenu";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 // import {logo} from "../../Assets/"
 
 const UserInfo = () => {
-  const { info, NotificationMethod, render, setRender } =
+  const { info, NotificationMethod, render, setRender, setPage } =
     useContext(AllContext);
   const [inputs, setInputs] = useState(true);
   const [imageInput, setImageInput] = useState(false);
@@ -83,6 +83,10 @@ const UserInfo = () => {
     }
   };
 
+  useEffect(() => {
+    setPage("Profile");
+  }, []);
+
   return (
     <div className="UserInfoContainer">
       <div className="AdminDashboardContainer">
@@ -93,7 +97,9 @@ const UserInfo = () => {
             <div className="UserInfoConatiner">
               <span className="flex justify-between items-center m-2">
                 <p>My Profile</p>
-                <button className="button-28" onClick={LogoutMethod}>Logout</button>
+                <button className="button-28" onClick={LogoutMethod}>
+                  Logout
+                </button>
               </span>
               <div className="UserImageName">
                 <div>
