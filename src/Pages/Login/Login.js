@@ -10,7 +10,7 @@ const Login = () => {
   const [Email, setEmail] = useState();
   const [Password, setPassword] = useState();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const { setAuth,NotificationMethod } = useContext(AllContext);
+  const { setAuth, NotificationMethod } = useContext(AllContext);
   const navigate = useNavigate();
 
   //Login Api call
@@ -19,7 +19,6 @@ const Login = () => {
       const Data = (
         await axios.post(`${BASE_URL}/api/login`, { Email, Password })
       ).data;
-      NotificationMethod(Data.message,Data.status)
       if (Data.token) {
         localStorage.setItem("auth", JSON.stringify(Data));
         // Authentication(Data.token)
@@ -28,9 +27,13 @@ const Login = () => {
         });
         navigate("/home");
       }
+      NotificationMethod(Data.message, Data.status);
     } catch (error) {
       console.log(error);
-      NotificationMethod(error.response.data.message,error.response.data.status)
+      NotificationMethod(
+        error.response.data.message,
+        error.response.data.status
+      );
     }
   };
 
