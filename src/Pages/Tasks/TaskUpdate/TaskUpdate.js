@@ -11,8 +11,15 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TaskUpdate = () => {
-  const { allModels, setRender, render, NotificationMethod, TaskDelete, role,setPage } =
-    useContext(AllContext);
+  const {
+    allModels,
+    setRender,
+    render,
+    NotificationMethod,
+    TaskDelete,
+    role,
+    setPage,
+  } = useContext(AllContext);
   const [modelColor, setModelColour] = useState([]);
   const [formDetail, setFormDetail] = useState({
     Job_No: "",
@@ -37,7 +44,7 @@ const TaskUpdate = () => {
   };
 
   useEffect(() => {
-    setPage("Task")
+    setPage("Task");
     const SingleTaskDataGet = async () => {
       try {
         const Response = (
@@ -305,7 +312,9 @@ const TaskUpdate = () => {
                         {value.Status}
                       </p>
                     </span>
-                    <p className="text-center w-[280px]">{value.Message}</p>
+                    {role === "Engineer" ? null : (
+                      <p className="text-center w-[280px]">{value.Message}</p>
+                    )}
                     <hr />
                   </div>
                 );
