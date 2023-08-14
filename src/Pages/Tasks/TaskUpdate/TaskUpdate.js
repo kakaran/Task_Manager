@@ -258,7 +258,7 @@ const TaskUpdate = () => {
                     rows="1"
                     onChange={formDataUpdate}
                     value={formDetail.Message}
-                    disabled={CheckValidation}
+                    // disabled={CheckValidation}
                   ></textarea>
                 </div>
 

@@ -4,48 +4,44 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;
   border: 2px solid #e5e7eb;
-
-
-  .TaskAddDetail {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    border-bottom: 1px solid #e0e1dd;
-  }
-
-  .TaskInput {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin-top: 20px;
-
-    .TaskDetail {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-top: 15px;
-    }
-
-    .TaskDetail label {
-      font-size: medium;
-      font-weight: 500;
-      color: #3d5a80;
-      padding-left: 5px;
-    }
-
-    .TaskDetail > input,
-    select,
-    textarea {
-      border: 1px solid #ced4da;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 10px;
-      background-color: #f9f9f9;
-      color: #011627;
-      resize: none;
-      outline-color: #0077bd;
-    }
-  }
-
 }
 
+.TaskAddDetail {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #e0e1dd;
+}
+.TaskInput {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.TaskDetail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.TaskDetail label {
+  font-size: medium;
+  font-weight: 500;
+  color: #3d5a80;
+  padding-left: 5px;
+}
+
+.TaskDetail > input,
+select,
+textarea {
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  color: #011627;
+  resize: none;
+  outline-color: #0077bd;
+}
