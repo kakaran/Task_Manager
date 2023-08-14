@@ -9,29 +9,29 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border: 2px solid #e5e7eb;
   gap: 20px;
+}
 
-  .TaskStatus {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+.TaskStatus {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  .TaskDetail > p {
-    font-weight: 500;
-    font-size: 16px;
-  }
+.TaskDetail > p {
+  font-weight: 500;
+  font-size: 16px;
+}
 
-  .TaskDetail > p > span {
-    font-size: 14px;
-    font-weight: 400;
-    color: #5d6063;
-  }
+.TaskDetail > p > span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #5d6063;
+}
 
-  .TaskStatus > p {
-    background-color: #ededed;
-    border-radius: 20px;
-    padding: 10px 15px;
-    color: #5c5f62;
-    text-align: center;
-  }
+.TaskStatus > p {
+  background-color: #ededed;
+  border-radius: 20px;
+  padding: 10px 15px;
+  color: #5c5f62;
+  text-align: center;
 }

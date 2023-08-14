@@ -63,8 +63,7 @@ const TaskUpdate = () => {
             Fab_ID: Response.GetData.Fab_ID,
             Status:
               Response.GetData.Status_Allocated_Message[lastStatus]?.Status,
-            Message:
-              Response.GetData.Status_Allocated_Message[lastStatus]?.Message,
+            Message:role === "Admin" ?  Response.GetData.Status_Allocated_Message[lastStatus]?.Message : "",
             Price: Response.GetData.Price,
             Date: Response.GetData.Date,
           });
