@@ -26,7 +26,7 @@ const Engineer = () => {
       }
     };
     GetAllEngineers();
-    setPage("Enginner");
+    setPage("Engineer");
   }, []);
 
   return (
@@ -39,7 +39,7 @@ const Engineer = () => {
             <div className="TaskOptions">
               <p>All Engineers</p>
               <div>
-                <div onClick={() => navigate("/engineers_Add")}>
+                <div onClick={() => navigate("/engineers_Add")} className="taskFilter">
                   <IoIosAdd style={{ fontSize: "20px" }} />
                   <p>Add Engineer</p>
                 </div>

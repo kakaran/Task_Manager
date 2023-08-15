@@ -17,7 +17,7 @@ const TopBar = () => {
         className="TopBarUserDetail"
         onClick={() => {
           navigate("/User");
-          setPage("User Info");
+          setPage("Profile");
         }}
       >
         <p>{FName && LName ? FName + " " + LName : null}</p>

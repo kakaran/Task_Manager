@@ -9,13 +9,14 @@ import { Link } from "react-router-dom";
 import { AllContext } from "../../Context/Context";
 
 const SideMenu = () => {
-  const { setPage, page, role } = useContext(AllContext);
+  const { setPage, page, role, permission } = useContext(AllContext);
   return (
     <>
       <div className="SideMenuContainer">
         <div className="SideOption">
           <AiTwotoneThunderbolt className="SideMenuIcon" fill="#a763f4  " />
-          <p>Task Manager</p>
+
+          <p className={`${permission ? "hidden" : "block"}`}>Task Manager</p>
         </div>
         <Link to="/home">
           <div
@@ -26,19 +27,19 @@ const SideMenu = () => {
             }}
           >
             <HiOutlineHome className="SideMenuIcons" />
-            <p>Home</p>
+            <p className={`${permission ? "hidden" : "block"}`}>Home</p>
           </div>
         </Link>
         <Link to="/tasks">
           <div
             className="SideOptions"
-            style={page === "Tasks" ? { color: "#000000" } : {}}
+            style={page === "Task" ? { color: "#000000" } : {}}
             onClick={() => {
-              setPage("Tasks");
+              setPage("Task");
             }}
           >
             <FaTasks className="SideMenuIcons" />
-            <p>Tasks</p>
+            <p className={`${permission ? "hidden" : "block"}`}>Tasks</p>
           </div>
         </Link>
         {role === "Engineer" ? null : (
@@ -46,21 +47,23 @@ const SideMenu = () => {
             <Link to="/Mobiles">
               <div
                 className="SideOptions"
-                style={page === "Mobiles" ? { color: "#000000" } : {}}
-                onClick={() => setPage("Mobiles")}
+                style={page === "Mobile" ? { color: "#000000" } : {}}
+                onClick={() => setPage("Mobile")}
               >
                 <BiMobileAlt className="SideMenuIcons" />
-                <p>Mobiles</p>
+                <p className={`${permission ? "hidden" : "block"}`}>Mobiles</p>
               </div>
             </Link>
             <Link to="/Engineers">
               <div
                 className="SideOptions"
-                style={page === "Engineers" ? { color: "#000000" } : {}}
-                onClick={() => setPage("Engineers")}
+                style={page === "Engineer" ? { color: "#000000" } : {}}
+                onClick={() => setPage("Engineer")}
               >
                 <MdEngineering className="SideMenuIcons" />
-                <p>Engineers</p>
+                <p className={`${permission ? "hidden" : "block"}`}>
+                  Engineers
+                </p>
               </div>
             </Link>
           </>

@@ -10,14 +10,15 @@ import { AllContext } from "../../Context/Context";
 
 const Tasks = () => {
   const navigate = useNavigate();
-  const { allTasks, role, homeField, setHomeField , setPage} = useContext(AllContext);
+  const { allTasks, role, homeField, setHomeField, setPage } =
+    useContext(AllContext);
   const [filterData, setFilterData] = useState(allTasks);
   const [jobFilter, setJobFilter] = useState(null);
   const selectDate = useRef();
 
   useEffect(() => {
     setFilterData(allTasks);
-    setPage("Task")
+    setPage("Task");
     if (homeField) {
       const FilterData = allTasks.filter((item) => {
         return (
@@ -62,46 +63,56 @@ const Tasks = () => {
               onClick={() => {
                 setFilterData(allTasks);
                 selectDate.current = "";
-                setHomeField(null)
+                setHomeField(null);
               }}
               className="cursor-pointer"
             >
               All Tasks
             </p>
             <div className="flex  justify-between gap-5 w-auto">
-              <input
-                type="date"
-                name="Date"
-                id=""
-                value={selectDate.current}
-                onChange={(e) => {
-                  selectDate.current = e.target.value;
-                  DateTaskFilter();
-                }}
-                style={{
-                  outline: "none",
-                  backgroundColor: "#eee9fd",
-                  borderRadius: "10px",
-                  padding: "10px",
-                  color: "#6f47eb",
-                }}
-              />
-              <div>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Search Job No"
-                  className="outline-none bg-[#eee9fd]"
-                  onChange={(e) => {
-                    setJobFilter(e.target.value);
-                  }}
-                  value={jobFilter}
-                />
+              <div className="taskFilter ">
+                <p>Filter</p>
+              </div>
+              <div className="flex gap-4 ">
+                <div className="taskFilter ">
+                  <input
+                    type="date"
+                    name="Date"
+                    id=""
+                    value={selectDate.current}
+                    onChange={(e) => {
+                      selectDate.current = e.target.value;
+                      DateTaskFilter();
+                    }}
+                    style={{
+                      outline: "none",
+                      backgroundColor: "#eee9fd",
+                      borderRadius: "10px",
+                      padding: "10px",
+                      color: "#6f47eb",
+                    }}
+                  />
+                </div>
+                <div className="taskFilter ">
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Search Job No"
+                    className="outline-none bg-[#eee9fd]"
+                    onChange={(e) => {
+                      setJobFilter(e.target.value);
+                    }}
+                    value={jobFilter}
+                  />
+                </div>
               </div>
 
               {role === "Admin" ? (
-                <div onClick={() => navigate("/task_Add")}>
+                <div
+                  onClick={() => navigate("/task_Add")}
+                  className="taskFilter"
+                >
                   <IoIosAdd style={{ fontSize: "20px" }} />
                   <p>Create Task</p>
                 </div>
@@ -142,7 +153,8 @@ const Tasks = () => {
                     />
                   </div>
                 );
-              })}
+              })
+              .reverse()}
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ const Model = () => {
           <div className="TaskOptions">
             <p>All Models</p>
             <div>
-              <div onClick={() => navigate("/Mobiles_Add")}>
+              <div onClick={() => navigate("/Mobiles_Add")} className="taskFilter">
                 <IoIosAdd style={{ fontSize: "20px" }} />
                 <p>Add Model</p>
               </div>

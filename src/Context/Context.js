@@ -17,8 +17,11 @@ const AllProvider = ({ children }) => {
   const [allTasks, setAllTasks] = useState([]);
   const [info, setInfo] = useState(null);
   const [page, setPage] = useState("Home");
-  const [allTask,setAllTask] = useState();
-  const [homeField,setHomeField] = useState(null)
+  const [allTask, setAllTask] = useState();
+  const [homeField, setHomeField] = useState(null);
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [permission, setPermission] = useState(false);
+
   // const navigate = useNavigate()
 
   axios.defaults.headers.common["authtok"] = auth.token;
@@ -157,11 +160,34 @@ const AllProvider = ({ children }) => {
   const AllTaskList = async () => {
     try {
       const Response = (await axios.get(`${BASE_URL}/api/TaskDetailGet`)).data;
-      if(Response) setAllTask(Response.AllTasks)
+      if (Response) setAllTask(Response.AllTasks);
     } catch (error) {
       console.log(error);
     }
   };
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+
+  useEffect(() => {
+    const ScreenSizeCheck = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    if (screenSize.width < 1281) {
+      // setSidemenu(false)
+      setPermission(true);
+    } else {
+      setPermission(false);
+    }
+    window.addEventListener("resize", ScreenSizeCheck);
+    return () => {
+      window.removeEventListener("resize", ScreenSizeCheck);
+    };
+  }, [screenSize]);
 
   useEffect(() => {
     // setRender(!render);
@@ -195,7 +221,8 @@ const AllProvider = ({ children }) => {
         TaskDelete,
         allTask,
         setHomeField,
-        homeField
+        permission,
+        homeField,
       }}
     >
       {children}

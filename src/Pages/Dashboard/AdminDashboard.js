@@ -23,7 +23,7 @@ const AdminDashboard = () => {
       <div className="pageContainer">
         <TopBar />
         <div className="PageData">
-          <div className="flex gap-4 justify-between">
+          <div className="flex gap-4 justify-center flex-wrap smallSize">
             <div
               className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg cursor-pointer"
               onClick={() => {
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div
-              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg"
+              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg cursor-pointer"
               onClick={() => {
                 setHomeField("Vender");
                 navigate("/tasks");
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div
-              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg"
+              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg cursor-pointer"
               onClick={() => {
                 setHomeField("Owner");
                 navigate("/tasks");
@@ -70,7 +70,7 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div
-              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg"
+              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg cursor-pointer"
               onClick={() => {
                 setHomeField("Engineer");
                 navigate("/tasks");
@@ -85,7 +85,7 @@ const AdminDashboard = () => {
               </p>
             </div>
             <div
-              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg"
+              className="border w-44 h-44 flex justify-center flex-col items-center gap-2 rounded-md shadow-lg cursor-pointer"
               onClick={() => {
                 setHomeField("RMA");
                 navigate("/tasks");

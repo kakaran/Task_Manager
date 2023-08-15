@@ -7,9 +7,10 @@
 .pageContainer {
   margin-left: auto;
   width: 85%;
-  padding-top:90px ;
-}
+  padding-top: 90px;
+  margin-block: auto;
 
+}
 
 .PageData {
   /* overflow-y: scroll; */
@@ -19,5 +20,30 @@
   margin: auto;
   text-align: justify;
   font-family: "Inter", sans-serif;
+}
 
+@media (max-width : 1281px){
+  .pageContainer{
+    width: 94%;
+  }
+
+}
+
+@media (max-width : 800px){
+  .pageContainer{
+    width: 90%;
+  }
+}
+
+
+
+@media (max-width: 479px) {
+  .smallSize {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pageContainer{
+    width: 85%;
+  }
 }
