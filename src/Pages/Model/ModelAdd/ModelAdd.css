@@ -4,15 +4,6 @@
   flex-direction: column;
   gap: 40px;
 
-  .MobileName {
-    border: 2px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  }
   .MobileName > div > input {
     border: 1px solid #ced4da;
     border-radius: 10px;
@@ -31,17 +22,6 @@
     color: #3d5a80;
   }
 
-  .ColourNames {
-    border: 2px solid #e5e7eb;
-    border-radius: 10px;
-    display: flex;
-    padding: 17px;
-    flex-direction: column;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    gap: 20px;
-    align-items: start;
-  }
-
   .ColourNames > div > span > input {
     border: 1px solid #ced4da;
     border-radius: 10px;
@@ -55,5 +35,43 @@
   .ColourNames > div {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.MobileName {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.ColourNames {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  display: flex;
+  padding: 17px;
+  flex-direction: column;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .MobileName {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .PageData {
+    padding: 0%;
+    margin: 0%;
+  }
+
+  .ColourNames {
+    padding: 5px;
   }
 }

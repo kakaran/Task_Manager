@@ -59,31 +59,41 @@
     width: 100%;
     margin-top: 15px;
   }
+}
+
+.StatusDisplay {
+  width: 100%;
+  padding: 25px;
+  overflow-y: scroll;
+
+  .StatusDisplay_history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .StatusDisplay_history > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .StatusDisplay_history > hr {
+    width: 2px;
+    height: 50px;
+    background-color: #0077bd;
+    margin: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .TaskUpdateContainer {
+    flex-direction: column;
+  }
 
   .StatusDisplay {
-    width: 100%;
-    padding: 25px;
-    overflow-y: scroll;
-
-    .StatusDisplay_history {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .StatusDisplay_history > span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .StatusDisplay_history > hr {
-      width: 2px;
-      height: 50px;
-      background-color: #0077bd;
-      margin: auto;
-    }
+    padding: 0px;
   }
 }

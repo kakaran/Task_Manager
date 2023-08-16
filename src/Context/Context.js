@@ -32,7 +32,6 @@ const AllProvider = ({ children }) => {
       if (Response) {
         setRole(Response);
       }
-      console.log(Response);
     } catch (error) {
       console.log(error);
     }
@@ -188,7 +187,7 @@ const AllProvider = ({ children }) => {
       window.removeEventListener("resize", ScreenSizeCheck);
     };
   }, [screenSize]);
-
+  
   useEffect(() => {
     // setRender(!render);
     if (isSignedIn) {
@@ -223,6 +222,7 @@ const AllProvider = ({ children }) => {
         setHomeField,
         permission,
         homeField,
+        screenSize
       }}
     >
       {children}

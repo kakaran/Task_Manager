@@ -127,7 +127,7 @@ const TaskAdd = () => {
                 <div className="TaskDetail">
                   <label htmlFor="Status">Status Allocated : </label>
                   <select name="Status" id="Status" onChange={formDataUpdate}>
-                    <option value="">Select Model</option>
+                    <option value="">Select Status</option>
                     <option value="Service Center">Service Center</option>
                     <option value="Vender">Vender</option>
                     <option value="Owner">Owner</option>

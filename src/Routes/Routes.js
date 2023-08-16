@@ -31,7 +31,6 @@ const EngineerRoutes = [
 ];
 
 const routes = (role, isSignedIn) => {
-  console.log(role, isSignedIn);
   const SignedInList = role === "Admin" ? AdminRoutes : EngineerRoutes;
   return isSignedIn ? [...SignedInList, ...CommonRoutes] : [...CommonRoutes];
 };

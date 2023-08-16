@@ -36,3 +36,20 @@
   text-align: center;
   width: 150px;
 }
+
+@media (max-width: 800px) {
+  .TaskCardsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .TaskStatus{
+    gap: 10px;
+  }
+
+  .TaskStatus > p{
+    width: 220px;
+  }
+
+
+}

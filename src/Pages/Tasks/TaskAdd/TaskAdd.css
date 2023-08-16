@@ -1,5 +1,5 @@
 .TaskAddContainer {
-  height: 100vh;
+  /* height: 100vh; */
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px;
@@ -44,4 +44,10 @@ textarea {
   color: #011627;
   resize: none;
   outline-color: #0077bd;
+}
+
+@media (max-width: 800px) {
+  .TaskInput{
+    flex-direction: column;
+  }
 }

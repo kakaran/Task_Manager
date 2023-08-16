@@ -10,11 +10,19 @@ import { AllContext } from "../../Context/Context";
 
 const Tasks = () => {
   const navigate = useNavigate();
-  const { allTasks, role, homeField, setHomeField, setPage } =
+  const { allTasks, role, homeField, setHomeField, setPage, screenSize } =
     useContext(AllContext);
   const [filterData, setFilterData] = useState(allTasks);
   const [jobFilter, setJobFilter] = useState(null);
+  const [permission, setPermission] = useState(false);
   const selectDate = useRef();
+  console.log(permission);
+
+  useEffect(() => {
+    if (screenSize.width > 900) {
+      setPermission(false);
+    }
+  }, [screenSize]);
 
   useEffect(() => {
     setFilterData(allTasks);
@@ -69,43 +77,96 @@ const Tasks = () => {
             >
               All Tasks
             </p>
-            <div className="flex  justify-between gap-5 w-auto">
-              <div className="taskFilter ">
-                <p>Filter</p>
-              </div>
-              <div className="flex gap-4 ">
-                <div className="taskFilter ">
-                  <input
-                    type="date"
-                    name="Date"
-                    id=""
-                    value={selectDate.current}
-                    onChange={(e) => {
-                      selectDate.current = e.target.value;
-                      DateTaskFilter();
+            <div className="flex justify-between gap-3 w-auto">
+              <div
+                className={`flex gap-4 ${
+                  screenSize.width < 900 ? "flex-col relative" : "flex-row"
+                }`}
+              >
+                {screenSize.width < 900 ? (
+                  <div
+                    className="taskFilter"
+                    onClick={() => {
+                      setPermission(!permission);
                     }}
-                    style={{
-                      outline: "none",
-                      backgroundColor: "#eee9fd",
-                      borderRadius: "10px",
-                      padding: "10px",
-                      color: "#6f47eb",
-                    }}
-                  />
-                </div>
-                <div className="taskFilter ">
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder="Search Job No"
-                    className="outline-none bg-[#eee9fd]"
-                    onChange={(e) => {
-                      setJobFilter(e.target.value);
-                    }}
-                    value={jobFilter}
-                  />
-                </div>
+                  >
+                    <p>Filter</p>
+                  </div>
+                ) : null}
+
+                {screenSize.width < 900 ? (
+                  permission ? (
+                    <div className="absolute top-12 flex flex-col gap-4">
+                      <div className="taskFilter mt-3">
+                        <input
+                          type="date"
+                          name="Date"
+                          id=""
+                          value={selectDate.current}
+                          onChange={(e) => {
+                            selectDate.current = e.target.value;
+                            DateTaskFilter();
+                          }}
+                          style={{
+                            outline: "none",
+                            backgroundColor: "#eee9fd",
+                            borderRadius: "10px",
+                            padding: "10px",
+                            color: "#6f47eb",
+                          }}
+                        />
+                      </div>
+                      <div className="taskFilter ">
+                        <input
+                          type="text"
+                          name=""
+                          id=""
+                          placeholder="Search Job No"
+                          className="outline-none bg-[#eee9fd]"
+                          onChange={(e) => {
+                            setJobFilter(e.target.value);
+                          }}
+                          value={jobFilter}
+                        />
+                      </div>
+                    </div>
+                  ) : null
+                ) : (
+                  <>
+                    <div className="taskFilter ">
+                      <input
+                        type="date"
+                        name="Date"
+                        id=""
+                        value={selectDate.current}
+                        onChange={(e) => {
+                          selectDate.current = e.target.value;
+                          DateTaskFilter();
+                        }}
+                        style={{
+                          outline: "none",
+                          backgroundColor: "#eee9fd",
+                          borderRadius: "10px",
+                          padding: "10px",
+                          color: "#6f47eb",
+                        }}
+                      />
+                    </div>
+                    <div className="taskFilter ">
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        placeholder="Search Job No"
+                        className="outline-none bg-[#eee9fd]"
+                        onChange={(e) => {
+                          setJobFilter(e.target.value);
+                        }}
+                        value={jobFilter}
+                      />
+                    </div>
+                  </>
+                )}
               </div>
 
               {role === "Admin" ? (

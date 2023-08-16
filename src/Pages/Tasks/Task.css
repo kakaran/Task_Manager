@@ -33,3 +33,14 @@
   align-items: center;
   /* justify-content: center; */
 }
+
+
+@media (max-width : 800px) {
+  .TaskCardDisplay{
+    flex-direction: column;
+  }
+
+  .taskFilter >input{
+    width: 200px;
+  }
+}

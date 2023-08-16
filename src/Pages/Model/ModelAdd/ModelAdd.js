@@ -101,7 +101,7 @@ const ModelAdd = () => {
               {coloursvalue?.map((value, index) => {
                 return (
                   <div key={index}>
-                    <label htmlFor="">Colour {value.index}</label>
+                    <label htmlFor="">Colour</label>
                     <span>
                       <input
                         type="text"
@@ -115,7 +115,7 @@ const ModelAdd = () => {
                       />
                       <button
                         style={{
-                          marginLeft: "10px",
+                          marginLeft: "5px",
                           backgroundColor: "#fcdad7",
                           color: "#f3685f",
                           // padding: "8px",

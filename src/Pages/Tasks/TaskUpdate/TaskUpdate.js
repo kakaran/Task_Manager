@@ -295,7 +295,7 @@ const TaskUpdate = () => {
             <div className="StatusDisplay">
               {statusHistory?.map((value, index) => {
                 const Date = value.Time.substring(0, 10);
-                const Time = value.Time.substring(12, 19);
+                const Time = value.Time.substring(11, 19);
                 return (
                   <div className="StatusDisplay_history">
                     <span>
