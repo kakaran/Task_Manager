@@ -9,7 +9,10 @@ import TaskUpdate from "../Pages/Tasks/TaskUpdate/TaskUpdate";
 import Tasks from "../Pages/Tasks/Tasks";
 import UserInfo from "../Pages/UserInfo/UserInfo";
 
-const CommonRoutes = [{ path: "/", element: <Login /> }];
+const CommonRoutes = [
+  { path: "/", element: <Login /> },
+  { path: "*", element: <Login /> },
+];
 
 const AdminRoutes = [
   { path: "/home", element: <AdminDashboard /> },
