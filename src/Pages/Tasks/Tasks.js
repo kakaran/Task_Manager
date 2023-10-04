@@ -16,7 +16,7 @@ const Tasks = () => {
   const [jobFilter, setJobFilter] = useState(null);
   const [permission, setPermission] = useState(false);
   const selectDate = useRef();
-  console.log(permission);
+  // console.log(permission);
 
   useEffect(() => {
     if (screenSize.width > 900) {

@@ -35,7 +35,7 @@ const TaskCards = (props) => {
           Metal Code : <span>{MetalCode}</span>
         </p>
         <p>
-          FAB ID : <span>{Fab_ID}</span>
+          FAB ID : <span>{FabId}</span>
         </p>
         {role === "Engineer" ? null : (
           <>
